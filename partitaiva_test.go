@@ -6,21 +6,21 @@ import (
 )
 
 func TESTPartitaiva(t *testing.T) {
-	res, err := ItPartitaIva("00468990015")
+	res, err := ItPartitaIva("86334519757")
 	if err != nil {
-		t.Fatal("Error, should be valid")
+		t.Fatal("Error, should be valid", err)
 	}
 	if res {
 		fmt.Println("Ok")
 	}
-	res, err = ItPartitaIva("00468990014")
+	res, err = ItPartitaIva("86334519755")
 	if err == nil {
 		t.Fatal("Error, should be invalid")
 	}
 	if !res {
 		fmt.Println("Ok", err)
 	}
-	res, err = ItPartitaIva("004689900")
+	res, err = ItPartitaIva("8633451975")
 	if err == nil {
 		t.Fatal("Error, should be invalid (length)")
 	}

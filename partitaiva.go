@@ -1,4 +1,5 @@
 package partitaiva
+//Verifica partita IVA - 2017 - Squeeze69
 
 //PIVAError : Partita IVA - error
 type PIVAError struct {
