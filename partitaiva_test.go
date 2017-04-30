@@ -7,28 +7,24 @@ import (
 
 func TestItPartitaiva(t *testing.T) {
 	pivaOk := []string{"12345678903","00000000000", "44444444440"}
+	pivaKO := []string{"xxxxxxxxxxxx","123456789012","44444444444","12345678901"}
 	for _, v := range pivaOk {
 		res, err := ItPartitaIva(v)
 		if err != nil {
 			t.Fatal("Error, ", v, " should be valid", err)
 		}
 		if res {
-			fmt.Println(v," Ok")
+			fmt.Println("Ok (valid)",v)
 		}
 	}
 
-	res, err := ItPartitaIva("123456789012")
-	if err == nil {
-		t.Fatal("Error, should be invalid")
-	}
-	if !res {
-		fmt.Println("Ok", err)
-	}
-	res, err = ItPartitaIva("12345678901")
-	if err == nil {
-		t.Fatal("Error, should be invalid (length)")
-	}
-	if !res {
-		fmt.Println("Ok", err)
+	for _,v := range pivaKO {
+		res, err := ItPartitaIva(v)
+		if err == nil {
+			t.Fatal("Error, ", v," should be invalid")
+		}
+		if !res {
+			fmt.Println("Ok (invalid)",v, err)
+		}
 	}
 }
