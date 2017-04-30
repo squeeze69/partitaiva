@@ -1,4 +1,5 @@
 package partitaiva
+
 //Verifica partita IVA - 2017 - Squeeze69
 
 //PIVAError : Partita IVA - error
@@ -23,21 +24,30 @@ func ItPartitaIva(piva string) (bool, *PIVAError) {
 		er.msg = "Wrong Length"
 		return false, er
 	}
-	var first, secondo, i int
+	var primo, secondo, i int
 	for i = 0; i <= 9; i += 2 {
-		first += ordv[string(piva[i])] - ordv["0"]
+		primo += ordv[string(piva[i])]
 	}
 	for i = 1; i <= 9; i += 2 {
-		secondo = 2 * (ordv[string(piva[i])] - ordv["0"])
+		secondo = 2 * ordv[string(piva[i])]
 		if secondo > 9 {
 			secondo = secondo - 9
 		}
-		first += secondo
+		primo += secondo
 	}
-	if 10-first%10 != ordv[string(piva[10])]-ordv["0"] {
-		er := new(PIVAError)
-		er.msg = "Check error"
-		return false, er
+	switch primo % 10 {
+	case 0:
+		if ordv[string(piva[10])] == 0 {
+			return true, nil
+		}
+	default:
+		if (10 - primo%10) == ordv[string(piva[10])] {
+			return true, nil
+		}
 	}
-	return true, nil
+
+	er := new(PIVAError)
+	er.msg = "Check error"
+	return false, er
+
 }

@@ -5,22 +5,26 @@ import (
 	"testing"
 )
 
-func TESTPartitaiva(t *testing.T) {
-	res, err := ItPartitaIva("86334519757")
-	if err != nil {
-		t.Fatal("Error, should be valid", err)
+func TestItPartitaiva(t *testing.T) {
+	pivaOk := []string{"12345678903","00000000000", "44444444440"}
+	for _, v := range pivaOk {
+		res, err := ItPartitaIva(v)
+		if err != nil {
+			t.Fatal("Error, ", v, " should be valid", err)
+		}
+		if res {
+			fmt.Println(v," Ok")
+		}
 	}
-	if res {
-		fmt.Println("Ok")
-	}
-	res, err = ItPartitaIva("86334519755")
+
+	res, err := ItPartitaIva("123456789012")
 	if err == nil {
 		t.Fatal("Error, should be invalid")
 	}
 	if !res {
 		fmt.Println("Ok", err)
 	}
-	res, err = ItPartitaIva("8633451975")
+	res, err = ItPartitaIva("12345678901")
 	if err == nil {
 		t.Fatal("Error, should be invalid (length)")
 	}
