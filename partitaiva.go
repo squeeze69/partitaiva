@@ -27,10 +27,11 @@ func ItPartitaIva(piva string) (bool, *PIVAError) {
 		return false, er
 	}
 
+	//verifica se è composto da soli digit
 	for _, c := range piva {
 		if !unicode.IsDigit(c) {
 			er := new(PIVAError)
-			er.msg = "Non numeric"
+			er.msg = "Invalid chars"
 			return false, er
 		}
 	}
