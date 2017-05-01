@@ -1,6 +1,9 @@
 package partitaiva
 
-import "unicode"
+import (
+	"unicode"
+	"strconv"
+)
 
 //Verifica partita IVA - 2017 - Squeeze69
 //Porting (più o meno) dalla versione in PHP presente sul sito Icosaedro:
@@ -18,9 +21,6 @@ func (r *PIVAError) Error() string {
 
 //ItPartitaIva check if it"s a valid partita IVA (VAT)
 func ItPartitaIva(piva string) (bool, *PIVAError) {
-	ordv := map[string]int{
-		"0": 0, "1": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9,
-	}
 	if len(piva) != 11 {
 		er := new(PIVAError)
 		er.msg = "Wrong Length"
@@ -37,16 +37,18 @@ func ItPartitaIva(piva string) (bool, *PIVAError) {
 	}
 	var primo, secondo, i int
 	for i = 0; i <= 9; i += 2 {
-		primo += ordv[string(piva[i])]
+		v,_ := strconv.Atoi(string(piva[i]))
+		primo += v
 	}
 	for i = 1; i <= 9; i += 2 {
-		secondo = 2 * ordv[string(piva[i])]
+		v,_ := strconv.Atoi(string(piva[i]))
+		secondo = 2 * v
 		if secondo > 9 {
 			secondo = secondo - 9
 		}
 		primo += secondo
 	}
-	if (10-primo%10)%10 == ordv[string(piva[10])] {
+	if v,_ := strconv.Atoi(string(piva[10])); (10-primo%10)%10 == v {
 		return true, nil
 	}
 
