@@ -5,10 +5,14 @@ import (
 	"strconv"
 )
 
-//Verifica partita IVA - 2017 - Squeeze69
-//Porting (più o meno) dalla versione in PHP presente sul sito Icosaedro:
-//un grazie ad Umberto Salsi
-//http://www.icosaedro.it/cf-pi/
+/*
+Verifica partita IVA - 2017 - Squeeze69
+Licenza: LGPL
+Porting basato sulla versione PHP pubblicata da Umberto Salsi su icosaedro:
+sito web: http://www.icosaedro.it/cf-pi/index.html
+package: https://github.com/squeeze69/partitaiva
+con go: go get github.com/squeeze69/partitaiva
+*/
 
 //PIVAError : Partita IVA - error
 type PIVAError struct {
