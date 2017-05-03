@@ -3,9 +3,12 @@ package partitaiva
 import "strconv"
 
 /*
-Verifica partita IVA - 2017 - Squeeze69
+Verifica partita IVA
+Versione: 1.0
+Data: 1/5/2017
+Autore: Squeeze69
 Licenza: LGPL
-Porting basato sulle informazioni pubblicate da Umberto Salsi su icosaedro:
+Porting basato sulle informazioni pubblicate da Umberto Salsi su Icosaedro:
 sito web: http://www.icosaedro.it/cf-pi/index.html
 
 package: https://github.com/squeeze69/partitaiva
@@ -22,14 +25,16 @@ func (r *PIVAError) Error() string {
 }
 
 //ItPartitaIva controlla se è una partita IVA valida nel formato
-//se piva è vuota, viene considerata valida, per questo caso, il controllo dovrebbe essere altrove
+//Nota: se piva è vuota, viene considerata valida, per questo caso, il controllo dovrebbe essere altrove
+//Ingresso: piva: stringa
+//Uscita: bool:true (a posto)/false (problemi) e *PIVAError (nil (a posto)/puntatore all'errore (problemi)
 func ItPartitaIva(piva string) (bool, *PIVAError) {
 	if len(piva) == 0 {
 		return true,nil
 	}
 	if len(piva) != 11 {
 		er := new(PIVAError)
-		er.msg = "Wrong Length"
+		er.msg = "Lunghezza Sbagliata"
 		return false, er
 	}
 
@@ -38,7 +43,7 @@ func ItPartitaIva(piva string) (bool, *PIVAError) {
 		v,err := strconv.Atoi(string(piva[i]))
 		if err != nil {
 			er := new(PIVAError)
-			er.msg = "Invalid chars"
+			er.msg = "Caratteri Non Validi"
 			return false, er
 		}
 		primo += v
@@ -47,7 +52,7 @@ func ItPartitaIva(piva string) (bool, *PIVAError) {
 		v,err := strconv.Atoi(string(piva[i]))
 		if err != nil {
 			er := new(PIVAError)
-			er.msg = "Invalid chars"
+			er.msg = "Caratteri Non Validi"
 			return false, er
 		}
 		secondo = 2 * v
@@ -61,7 +66,7 @@ func ItPartitaIva(piva string) (bool, *PIVAError) {
 	}
 
 	er := new(PIVAError)
-	er.msg = "Wrong Check Code"
+	er.msg = "Carattere Di Controllo Non Valido"
 	return false, er
 
 }
