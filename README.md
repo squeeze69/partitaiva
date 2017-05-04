@@ -1,6 +1,6 @@
-Verifica partita IVA in GO (golang.org)
+Verifica partita IVA in GO (http://golang.org)
 
-License: LGPL
+License: LGPLv3
 
 2017
 
