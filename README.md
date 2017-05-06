@@ -1,6 +1,6 @@
-Verifica partita IVA in GO (http://golang.org)
+# Verifica partita IVA in GO (http://golang.org)
 
-License: LGPLv3
+## License: LGPLv3
 
 2017
 
@@ -11,6 +11,7 @@ sito web: http://www.icosaedro.it/cf-pi/index.html
 
 Uso:
 
+```
 package main
 
 import (
@@ -26,5 +27,6 @@ func main() {
 		fmt.Println("Partita IVA valida")
 	}
 }
+```
 
 per il codice fiscale, vedi: https://github.com/squeeze69/codicefiscale
