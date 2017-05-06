@@ -1,10 +1,8 @@
 # Verifica partita IVA in [GO](http://golang.org)
 
-## License: LGPLv3
+## Licenza: LGPLv3
 
-#### 2017
-
-package: go get github.com/squeeze69/partitaiva
+Package: go get github.com/squeeze69/partitaiva
 
 Porting basato sulle informazioni pubblicate da Umberto Salsi su [Icosaedro](http://www.icosaedro.it/cf-pi/index.html)
 
@@ -28,4 +26,4 @@ func main() {
 }
 ```
 
-simile ma per il [codice fiscale](https://github.com/squeeze69/codicefiscale)
+Se cercaste il [codice fiscale](https://github.com/squeeze69/codicefiscale)
