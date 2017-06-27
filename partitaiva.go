@@ -36,7 +36,7 @@ func errPIVA(s string) *PIVAError {
 //Ingresso: piva: stringa
 //Uscita: bool:true (a posto)/false (problemi) e *PIVAError (nil (a posto)/puntatore all'errore (problemi)
 func ItPartitaIva(piva string) (bool, *PIVAError) {
-	if len(piva) == 0 {	//convenzione da Icosaedro
+	if len(piva) == 0 { //convenzione da Icosaedro
 		return true, nil
 	}
 	if len(piva) != 11 {
@@ -61,7 +61,11 @@ func ItPartitaIva(piva string) (bool, *PIVAError) {
 		primo += secondo
 	}
 	//corrisponde?
-	if v, _ := strconv.Atoi(string(piva[10])); (10-primo%10)%10 == v {
+	v, err := strconv.Atoi(string(piva[10]))
+	if err != nil {
+		return false, errPIVA("Caratteri Non Validi")
+	}
+	if (10-primo%10)%10 == v {
 		return true, nil
 	}
 	//non corrisponde

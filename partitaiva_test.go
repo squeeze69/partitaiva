@@ -7,10 +7,10 @@ import (
 
 func TestItPartitaiva(t *testing.T) {
 	//partite IVA valide (formalmente)
-	pivaOk := []string{"12345678903", "00000000000", "44444444440",""}
+	pivaOk := []string{"12345678903", "00000000000", "44444444440", ""}
 	//partite IVA non valide
 	pivaKO := []string{"xxxxxxxxxxx", "123456789012", "44444444444", "12345678901", "44444+44440", "corto", "123456789.3",
-	"4444X444440"}
+		"4444X444440", "1234567890x", }
 	for _, v := range pivaOk {
 		res, err := ItPartitaIva(v)
 		if err != nil {
