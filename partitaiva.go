@@ -42,16 +42,14 @@ func ItPartitaIva(piva string) (bool, *PIVAError) {
 	if len(piva) != 11 {
 		return false, errPIVA("Lunghezza Sbagliata")
 	}
-
-	var primo, secondo, i int
+	var v, primo, secondo, i int
+	var err error
 	for i = 0; i <= 9; i += 2 {
-		v, err := strconv.Atoi(string(piva[i]))
-		if err != nil {
+		if v, err = strconv.Atoi(string(piva[i])); err != nil {
 			return false, errPIVA("Caratteri Non Validi")
 		}
 		primo += v
-		v, err = strconv.Atoi(string(piva[i+1]))
-		if err != nil {
+		if v, err = strconv.Atoi(string(piva[i+1])); err != nil {
 			return false, errPIVA("Caratteri Non Validi")
 		}
 		secondo = 2 * v
@@ -61,8 +59,7 @@ func ItPartitaIva(piva string) (bool, *PIVAError) {
 		primo += secondo
 	}
 	//corrisponde?
-	v, err := strconv.Atoi(string(piva[10]))
-	if err != nil {
+	if v, err = strconv.Atoi(string(piva[10])); err != nil {
 		return false, errPIVA("Caratteri Non Validi")
 	}
 	if (10-primo%10)%10 == v {
