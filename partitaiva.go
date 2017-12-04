@@ -58,7 +58,7 @@ func ItPartitaIva(piva string) (bool, *PIVAError) {
 		}
 		primo += secondo
 	}
-	//corrisponde?
+	//controlla se corrisponde
 	if v, err = strconv.Atoi(string(piva[10])); err != nil {
 		return false, errPIVA("Caratteri Non Validi")
 	}
