@@ -24,8 +24,8 @@ func (r *PIVAError) Error() string {
 	return r.msg
 }
 
-//errPIVA : genera un *PIVAError, non esportata
-func errPIVA(s string) *PIVAError {
+//ErrPIVA : genera un *PIVAError, non esportata
+func ErrPIVA(s string) *PIVAError {
 	err := new(PIVAError)
 	err.msg = s
 	return err
@@ -40,17 +40,17 @@ func ItPartitaIva(piva string) (bool, *PIVAError) {
 		return true, nil
 	}
 	if len(piva) != 11 {
-		return false, errPIVA("Lunghezza Sbagliata")
+		return false, ErrPIVA("Lunghezza Sbagliata")
 	}
-	var v, primo, secondo, i int
+	var v, primo, secondo int
 	var err error
-	for i = 0; i <= 9; i += 2 {
+	for i := 0; i <= 9; i += 2 {
 		if v, err = strconv.Atoi(string(piva[i])); err != nil {
-			return false, errPIVA("Caratteri Non Validi")
+			return false, ErrPIVA("Caratteri Non Validi")
 		}
 		primo += v
 		if v, err = strconv.Atoi(string(piva[i+1])); err != nil {
-			return false, errPIVA("Caratteri Non Validi")
+			return false, ErrPIVA("Caratteri Non Validi")
 		}
 		secondo = 2 * v
 		if secondo > 9 {
@@ -60,11 +60,11 @@ func ItPartitaIva(piva string) (bool, *PIVAError) {
 	}
 	//controlla se corrisponde
 	if v, err = strconv.Atoi(string(piva[10])); err != nil {
-		return false, errPIVA("Caratteri Non Validi")
+		return false, ErrPIVA("Caratteri Non Validi")
 	}
 	if (10-primo%10)%10 == v {
 		return true, nil
 	}
 	//non corrisponde
-	return false, errPIVA("Carattere Di Controllo Non Valido")
+	return false, ErrPIVA("Carattere Di Controllo Non Valido")
 }
