@@ -34,3 +34,13 @@ func TestItPartitaiva(t *testing.T) {
 		}
 	}
 }
+
+// utile per godoc
+func ExampleItPartitaiva() {
+	if _, err := ItPartitaIva("12345678903"); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("Partita IVA valida")
+	}
+	// Output: Partita IVA valida
+}
