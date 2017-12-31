@@ -36,7 +36,7 @@ func TestItPartitaiva(t *testing.T) {
 }
 
 // utile per godoc
-func ExampleItPartitaiva() {
+func ExampleItPartitaIva() {
 	if _, err := ItPartitaIva("12345678903"); err != nil {
 		fmt.Println(err)
 	} else {
