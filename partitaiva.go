@@ -24,7 +24,7 @@ func (r *PIVAError) Error() string {
 	return r.msg
 }
 
-//ErrPIVA : genera un *PIVAError, non esportata
+//ErrPIVA : genera un *PIVAError
 func ErrPIVA(s string) *PIVAError {
 	err := new(PIVAError)
 	err.msg = s
