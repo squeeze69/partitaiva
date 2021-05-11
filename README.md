@@ -2,7 +2,9 @@
 [![Build Status](https://travis-ci.org/squeeze69/partitaiva.svg?branch=master)](https://travis-ci.org/squeeze69/partitaiva)
 ## Licenza: LGPLv3
 
-Package: go get github.com/squeeze69/partitaiva
+**Package**: go get github.com/squeeze69/partitaiva
+
+**Disponibile come modulo**
 
 Porting basato sulle informazioni pubblicate da Umberto Salsi su [Icosaedro](http://www.icosaedro.it/cf-pi/index.html)
 
