@@ -1,5 +1,5 @@
 # Verifica partita IVA in [GO](http://golang.org)
-[![Build Status](https://travis-ci.org/squeeze69/partitaiva.svg?branch=master)](https://travis-ci.org/squeeze69/partitaiva)
+[![Build Status](https://travis-ci.com/squeeze69/partitaiva.svg?branch=master)](https://travis-ci.com/squeeze69/partitaiva)
 ## Licenza: LGPLv3
 
 **Package**: go get github.com/squeeze69/partitaiva
