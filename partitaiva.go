@@ -1,7 +1,5 @@
 package partitaiva
 
-import "strconv"
-
 /*
 Verifica partita IVA
 Versione: 1.0
@@ -31,6 +29,10 @@ func ErrPIVA(s string) *PIVAError {
 	return err
 }
 
+var pivachars = map[byte]uint  {
+	'0':0, '1':1, '2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':8, '9':9,
+}
+
 //ItPartitaIva controlla se è una partita IVA valida nel formato
 //Nota: se piva è vuota, viene considerata valida, per questo caso, il controllo dovrebbe essere altrove
 //Ingresso: piva: stringa
@@ -42,14 +44,14 @@ func ItPartitaIva(piva string) (bool, *PIVAError) {
 	if len(piva) != 11 {
 		return false, ErrPIVA("Lunghezza Sbagliata")
 	}
-	var v, primo, secondo uint64
-	var err error
+	var v, primo, secondo uint
+	var ok bool
 	for i := 0; i <= 9; i += 2 {
-		if v, err = strconv.ParseUint(string(piva[i]), 10, 0); err != nil {
+		if v, ok = pivachars[piva[i]]; !ok {
 			return false, ErrPIVA("Caratteri Non Validi")
 		}
 		primo += v
-		if v, err = strconv.ParseUint(string(piva[i+1]), 10, 0); err != nil {
+		if v, ok = pivachars[piva[i+1]]; !ok  {
 			return false, ErrPIVA("Caratteri Non Validi")
 		}
 		secondo = 2 * v
@@ -59,7 +61,7 @@ func ItPartitaIva(piva string) (bool, *PIVAError) {
 		primo += secondo
 	}
 	//controlla se corrisponde
-	if v, err = strconv.ParseUint(string(piva[10]), 10, 0); err != nil {
+	if v, ok = pivachars[piva[10]]; !ok { 
 		return false, ErrPIVA("Caratteri Non Validi")
 	}
 	if (10-primo%10)%10 == v {
