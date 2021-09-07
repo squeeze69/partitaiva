@@ -22,7 +22,6 @@ func TestItPartitaiva(t *testing.T) {
 			fmt.Printf("Ok (valido) \"%s\"\n", v)
 		}
 	}
-
 	// test con partite IVA che NON dovrebbero passare
 	for _, v := range pivaKO {
 		res, err := ItPartitaIva(v)
