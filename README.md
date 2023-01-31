@@ -1,4 +1,4 @@
-# Verifica partita IVA in [GO](http://golang.org)
+# Verifica partita IVA in [GO](http://go.dev)
 
 ## Licenza: LGPLv3
 
